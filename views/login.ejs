@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>HSM Image Host Login</title>
+
+        <style>
+            html {
+                min-height: 100%;
+                display: grid;
+            }
+
+            body {
+                margin: auto;
+                background-color: #372963;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                color: #c5c8c6;
+            }
+
+            p {
+                color: #c5c8c6;
+            }
+
+            div {
+                color: #c5c8c6;
+            }
+
+            input {
+                border: 0px;
+                background-color: #261d45;
+                color: #c5c8c6;
+            }
+
+            button {
+                background-color: #261d45;
+                color: #c5c8c6;
+                border: 0px;
+                padding: 5px 62px;
+            }
+
+            button:hover{background-color: #1e1d45;}
+
+            button:focus{background-color: #463b69;}
+
+            a {
+                color: #c5c8c6;
+                text-decoration: none;
+            }
+
+        </style>
+
+        <% if (messages.error) { %>
+            <p> <%= messages.error %> </p>
+        <% } %>
+    </head>
+
+    <body>
+        <form action="/login" method="POST">
+            <div>
+                <label for="username">Username:</label>
+                <br>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <br>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <p>
+                <button type="submit">Login</button>
+            </p>
+        </form>
+        <a href="/register">Register</a>
+    </body>
+</html>

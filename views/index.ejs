@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>HSM Image Host</title>
+
+        <style>
+            html {
+                min-height: 100%;
+                display: grid;
+            }
+
+            body {
+                margin: auto;
+                background-color: #372963;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                color: #c5c8c6;
+            }
+
+            button {
+                background-color: #261d45;
+                color: #c5c8c6;
+                border: 0px;
+                padding: 5px 62px;
+            }
+
+            form {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        </style>
+
+        <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </head>
+
+    <body>
+        <h1>Welcome, <%= username %></h1>
+    </body>
+</html>

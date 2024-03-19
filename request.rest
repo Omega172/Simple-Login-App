@@ -1,0 +1,34 @@
+// https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+// Debug REST requests for register and login
+
+// Register user Omega
+POST http://localhost:8080/register
+Content-Type: application/x-www-form-urlencoded
+
+username=Omega&email=omega@omegaware.xyz&password=password
+
+###
+
+// Register user John
+POST http://localhost:8080/register
+Content-Type: application/x-www-form-urlencoded
+
+username=John&email=john@example.com&password=password
+
+###
+
+// Login user Omega using email
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=omega@omegaware.xyz&password=password
+
+###
+
+// Login user John using username
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=John&password=password
+
+###

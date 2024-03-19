@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <title>HSM Image Host Login</title>
+
+        <style>
+            html {
+                min-height: 100%;
+                display: grid;
+            }
+
+            body {
+                margin: auto;
+                background-color: #372963;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                color: #c5c8c6;
+            }
+
+            p {
+                color: #c5c8c6;
+            }
+
+            input {
+                border: 0px;
+                background-color: #261d45;
+                color: #c5c8c6;
+            }
+
+            button {
+                background-color: #261d45;
+                color: #c5c8c6;
+                border: 0px;
+                padding: 5px 54px;
+            }
+
+            button:hover{background-color: #1e1d45;}
+
+            button:focus{background-color: #463b69;}
+
+            a {
+                color: #c5c8c6;
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <form id="register_form" action="POST">
+            <p>
+                <label>Username:</label> <br>
+                <input type="text" id="username" name="username">
+            </p>
+
+            <p>
+                <label>Email:</label> <br>
+                <input type="email" id="email" name="email">
+            </p>
+
+            <p>
+                <label>Password:</label> <br>
+                <input type="password" id="password" name="password">
+            </p>
+
+            <p>
+                <button>Register</button>
+            </p>
+        </form>
+        <a href="/login">Login</a>
+    </body>
+
+    <script>
+        var form = document.getElementById('register_form');
+        form.onsubmit = function(event){
+            var xhr = new XMLHttpRequest();
+            var formData = new FormData(form);
+
+            //open the request
+            xhr.open('POST','/register')
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            //send the form data
+            xhr.send(JSON.stringify(Object.fromEntries(formData)));
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    // Redirect to login page if registration is successful
+                    if (xhr.status == 201) {
+                        window.location.href = '/login';
+                    }
+
+                    // On failure clear the password field
+                    document.getElementById('password').value = '';
+
+                    // Let the user know what went wrong
+                    if (xhr.status == 400) {
+                        console.log(xhr.responseText);
+
+                        if (xhr.responseText == '{"message":"Email already in use"}') {
+                            alert('Email is already in use');
+                        }
+
+                        if (xhr.responseText == '{"message":"Username already in use"}') {
+                            alert('Username is already in use');
+                        }
+
+                        if (xhr.responseText == '{"message":"Invalid email"}') {
+                            alert('Invalid email');
+                        }
+
+                        if (xhr.responseText == '{"message":"Invalid data"}') {
+                            alert('Please fill out all fields');
+                        }
+                    }
+                }
+            }
+
+            return false; 
+        }
+    </script>
+</html>
