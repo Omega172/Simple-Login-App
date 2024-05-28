@@ -1,2 +1,5 @@
 .env
 node_modules
+
+# So we don't commit any changes to the users.json 
+users.json
